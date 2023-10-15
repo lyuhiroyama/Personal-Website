@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>LYUROAD</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+   <p id="header-text">LYUROAD</p> 
+  </header>
+
+    <nav>
+      <p id="nav-logo">LYUROAD</p>
+      <ul>
+        <li>Features</li>
+        <li>Pricing</li>
+        <li>Blog</li>
+        <li>Discover</li>
+      </ul>
+      <ul>
+        <li id="dashboard-hover">Dashboard</li>
+      </ul>
+    </nav>
+
+
+  <div id="verticalOne-div">
+    <div id="horizontalOne-divOne"></div>
+    <div id="horizontalOne-divTwo"></div>
+  </div>
+
+  <div id="verticalTwo-div">
+  </div>
+
+
+<script>
+  window.onscroll = function() {
+    const nav = document.querySelector("nav");
+    const header = document.querySelector("header");
+    const navLogo = document.getElementById("nav-logo");
+
+    const headerHeight = header.offsetHeight;
+
+    if (window.pageYOffset > headerHeight) {
+      nav.classList.add("sticky");
+      header.style.display = none;
+      navLogo.style.display = none;
+      
+    } else {
+      nav.classList.remove("sticky");
+      header.style.display = "block";
+      navLogo.style.display = "block";
+    }
+
+  }
+</script>
+
+</body>
+
+</html>
