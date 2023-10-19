@@ -39,8 +39,6 @@ nav.sticky {
 }
 
 #nav-logo {
-  position: absolute;
-  left: 10px;
   display: none;
 }
 
@@ -53,6 +51,13 @@ nav.sticky {
 #dashboard-hover:hover {
   color: black;
   background-color: #eb81e0;
+}
+
+#verticalOneHalf-div {
+  display: none;
+  height: 310px;
+  width: 100%;
+
 }
 
 #verticalOne-div {
@@ -75,4 +80,22 @@ nav.sticky {
 #verticalTwo-div {
   height: 600px;
   border-top: 2px solid black;
+}
+
+#verticalThree-div {
+  display:flex;
+  border-top: 2px solid black;
+}
+
+#horizontalThree-divOne {
+  background-color: #AB00A1;
+  height: 600px;
+  width: 100%;
+}
+
+#horizontalThree-divTwo {
+  background-color: #eb81e0;
+  height: 600px;
+  width: 100%;
+  border-left: 2px solid black;
 }
