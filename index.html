@@ -42,6 +42,33 @@
     <div id="horizontalThree-divTwo"></div>
   </div>
 
+
+<script>
+  window.onscroll = function() {
+    const nav = document.querySelector("nav");
+    const header = document.querySelector("header");
+    const navLogo = document.getElementById("nav-logo");
+    const scrollPlaceholder = document.getElementById("verticalOneHalf-div");
+
+    const headerHeight = header.offsetHeight;
+
+    if (window.pageYOffset > headerHeight) {
+      nav.classList.add("sticky");
+      header.style.display = "none";
+      navLogo.style.display = "inline";
+      scrollPlaceholder.style.display = "block";
+
+      
+    } else {
+      nav.classList.remove("sticky");
+      header.style.display = "block";
+      navLogo.style.display = "none";
+      scrollPlaceholder.style.display = "none";
+    }
+
+  }
+</script>
+
 </body>
 
 </html>
