@@ -34,6 +34,29 @@ nav li {
   padding: 1.75em 1em;
 }
 
+nav ul li ul {
+  display: none;
+  position: absolute;
+}
+
+nav ul li:hover ul {
+  display: block;
+}
+
+nav ul li ul li {
+  border: 1px solid black;
+}
+
+nav ul li ul li a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+nav ul li ul li a:hover {
+  background-color: #eb81e0;
+}
+
 #nav-logo {
   display: none;
 }
