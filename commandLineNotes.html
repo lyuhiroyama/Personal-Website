@@ -1,0 +1,735 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Command Line (1)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f8d7e12a-190b-4488-9c6e-fe3ab148b21f" class="page sans"><header><h1 class="page-title">Command Line (1)</h1><p class="page-description"></p></header><div class="page-body"><p id="39e5d4c4-27e7-445d-9460-7a4e9e1bc0ad" class="">
+</p><ul id="65b82182-3800-4824-909f-cbedc11de3ee" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow">CLI</mark><ul id="0426f7d8-4b94-4123-8223-8e4400be2617" class="toggle"><li><details open=""><summary>(def)</summary><ul id="ec685703-98a2-434e-b6b4-fbbf29023d7e" class="bulleted-list"><li style="list-style-type:disc">*Command-line Interface</li></ul><ul id="89aa1929-eec5-4e48-bc66-1ddb6b516f99" class="bulleted-list"><li style="list-style-type:disc">(def) Text-based UI used to run programs.</li></ul><ul id="1fb6f533-2eca-41e7-bcb8-6364539bbf52" class="bulleted-list"><li style="list-style-type:disc">Different CLI&#x27;s:<ul id="e6a38e3d-7f48-4a10-91c1-25f402e7a8ad" class="bulleted-list"><li style="list-style-type:circle">Mac → Terminal</li></ul><ul id="ddc84d66-6787-4ca4-a1bb-61ce4472708c" class="bulleted-list"><li style="list-style-type:circle">Windows → Command Prompt</li></ul><ul id="24f4d651-158e-4578-86c8-ad91fe3e9894" class="bulleted-list"><li style="list-style-type:circle">Linux: Linux Bash Shell</li></ul></li></ul></details></li></ul></li></ul><p id="71c92c33-8f35-424e-ba11-01e5f5431816" class="">
+</p><ul id="068a053f-b402-478c-ae0b-b3366690e9dd" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow">Unix Shell</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><ul id="26797c6a-58fd-4911-875b-d9bb5769a82c" class="toggle"><li><details open=""><summary>(def)</summary><ul id="c4e00c79-9c48-43a9-bab9-87bdaf74aee0" class="bulleted-list"><li style="list-style-type:disc">*The ‘Shell’</li></ul><ul id="c0fc5f89-ddc2-4b21-91c7-c356ba69fd27" class="bulleted-list"><li style="list-style-type:disc">Both a CLI &amp; a <span style="border-bottom:0.05em solid">scripting language</span>. <br/>A ‘Shell’ that provides an interface between the user and the OS (’kernel’).<br/><ul id="f7384337-a6cd-4e15-bdc6-d8819dde4a11" class="bulleted-list"><li style="list-style-type:circle">*<span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">scripting language</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span> (wiki) : Programming language used to manipulate/customize/automate the facilities of an existing system.</li></ul></li></ul><ul id="fc9564c2-9f01-4a49-8b33-2d5fa51ce158" class="bulleted-list"><li style="list-style-type:disc">Different types of Unix Shells:<ul id="dfce4dc1-6cde-466b-bd8b-85fc1245c2e2" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-red">sh</mark> - Bourne shell</li></ul><ul id="5ecaab1c-2733-42a5-a6cd-839f7d385c25" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red">bash</mark></mark></mark></mark> - Bourne again shell (Was written as part of the GNU project)</li></ul><ul id="0ef8d2f6-29fd-4d7b-9fe5-68d8afd21f03" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-red"><mark class="highlight-red">zsh</mark></mark> - Z shell</li></ul></li></ul></details></li></ul><ul id="b7dd5ea7-2494-469d-90cd-6d7a0b8ce49f" class="toggle"><li><details open=""><summary>*Shell Script</summary><ul id="31dd4c00-08c3-4a8c-ab87-8da4778b8d0f" class="bulleted-list"><li style="list-style-type:disc">(def) File that contains commands/instructions written in a shell scripting language.</li></ul><ul id="85b1a100-d87b-47db-96e6-ed18d78b662f" class="bulleted-list"><li style="list-style-type:disc">File extension formats: <mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">.sh</mark></mark></mark></li></ul></details></li></ul></li></ul><p id="883154e8-d037-4e63-a8b1-e1f9445e6fb0" class="">
+</p><ul id="fc99138f-f4e0-40e3-91a3-37749bda7974" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">/Users/lyuhiroyama</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><ul id="41cde7a3-769a-474f-9601-d715161092b8" class="toggle"><li><details open=""><summary>(def)</summary><ul id="3b216795-5706-4f58-a190-9b5355f9b8b5" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">/Users/lyuhiroyama</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><br/>→ <br/><mark class="highlight-blue">/</mark>  is the root directory.<br/>→ <br/><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">Users</mark></mark></mark></mark></mark> in this case is a <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">directory</span></span></span></span></span></span></span></span></span> (folder)<br/>→ The second <br/><mark class="highlight-blue">/</mark> (and onwards) acts as a separator (unlike the first <mark class="highlight-blue">/</mark>)<br/>→ <br/><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">lyuhiroyama</mark></mark></mark></mark></mark> in this case is a path (not a <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">directory</span></span></span></span></span></span></span></span></span>) </li></ul></details></li></ul><ul id="ceca7b5d-cce3-4631-b837-c5611949444c" class="toggle"><li><details open=""><summary>Home Directory</summary><ul id="d91b95d0-081f-4e89-9527-404bd7608372" class="bulleted-list"><li style="list-style-type:disc">(def) Directory for a given user(<mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">lyuhiroyama</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>) of the system.</li></ul><ul id="81c34bdb-2663-4122-9e53-fe47ce612c48" class="bulleted-list"><li style="list-style-type:disc">Is set to <mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">/Users/lyuhiroyama</mark></mark></mark></mark></mark></mark> by default.</li></ul></details></li></ul><ul id="bfbb3226-8c9f-46cf-b6bc-7ca4d2904473" class="toggle"><li><details open=""><summary><mark class="highlight-blue">/ </mark>(Root Directory)</summary><ul id="7a359d6f-6f05-4064-ad1d-76e42f8c53d8" class="bulleted-list"><li style="list-style-type:disc">(def) The top-most directory, where all your directories and files are.</li></ul></details></li></ul><ul id="2d6ed2ed-0994-4e9b-877e-5ddbda905127" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">Users</mark></mark></mark></mark></mark></summary><ul id="bf6ad8bc-8fd0-42e3-9a45-df23f21dda98" class="bulleted-list"><li style="list-style-type:disc">(def) Directory where each users’ personal directories are located.</li></ul></details></li></ul><ul id="3ba21211-d625-41f9-bf3f-96cf21be1af5" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">lyuhiroyama</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></summary><ul id="2b3388f2-9c62-4b11-a1e4-8be04cbd3e9c" class="bulleted-list"><li style="list-style-type:disc">(def) Directory with your (user <mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">lyuhiroyama</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>’s) directories and files are.</li></ul></details></li></ul></li></ul><p id="ead0d4b6-1ff7-4e10-962d-4066b0062818" class="">
+</p><ul id="e0fda003-16bc-424c-ad1a-4c88482540cf" class="bulleted-list"><li style="list-style-type:disc">Opening Setup (<mark class="highlight-blue">Lyu-MacBook-Pro:</mark><mark class="highlight-blue"><strong>~  lyuhiroyama$</strong></mark>)<ul id="7d616d4b-78d7-449c-aa46-e3e5745b0224" class="toggle"><li><details open=""><summary><mark class="highlight-blue">Lyu-MacBook-Pro</mark></summary><ul id="ce9bf633-38b2-4eb7-a414-e8ad677edd8c" class="bulleted-list"><li style="list-style-type:disc">(def) Your ‘hostname’, consisting of your username &amp; model name.</li></ul></details></li></ul><ul id="3f1d8ed7-535a-4d3a-bfa7-d5961b5d45e5" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><strong>~</strong></mark></summary><ul id="73734352-6a9b-40b7-a7ae-6ea9fe272be0" class="bulleted-list"><li style="list-style-type:disc">(def) Symbol which shows that you are in your home directory.<br/>→ In path language that would be <br/><mark class="highlight-red">/home/lyuhiroyama</mark></li></ul><ul id="e02cbe76-01c8-4f07-bea0-2b15efb1a4c0" class="bulleted-list"><li style="list-style-type:disc">*Tilde symbol</li></ul></details></li></ul><ul id="15b0b6ff-252c-4a6a-872b-f4c8e6628bf3" class="toggle"><li><details open=""><summary><mark class="highlight-blue">lyuhiroyama</mark></summary><ul id="7b5f19a0-a32e-4b52-81c9-170e416e2fde" class="bulleted-list"><li style="list-style-type:disc">(def) Username of the current user logged in.</li></ul></details></li></ul><ul id="b5f00c58-1209-4a1d-91be-f4f7fbf8006e" class="toggle"><li><details open=""><summary><mark class="highlight-blue">$</mark></summary><ul id="6d5ac664-c6a3-4ded-a08f-0751fad4e346" class="bulleted-list"><li style="list-style-type:disc">(def) A ‘Prompt character’ indicating that the system is ready for a command.</li></ul></details></li></ul></li></ul><p id="c3e7c46e-4f5d-4de4-9247-85e7bd87d921" class="">
+</p><ul id="ea8871e8-cdb5-47ab-8ff8-4bf975c2e21b" class="bulleted-list"><li style="list-style-type:disc">Shell Commands<ul id="e3a476ae-2c1f-4ae8-9be5-2f0c359c7c15" class="toggle"><li><details open=""><summary>Components of a Shell Comand:</summary><ul id="b466be51-f737-4288-b1dd-1cfef5368dfc" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red">$ ls -F /<br/><br/></mark></mark></mark></mark></mark></mark></mark></mark></mark>→ <mark class="highlight-red">$</mark> : Prompt (Indicates where you can type commands)<br/>→ <br/><mark class="highlight-red"><mark class="highlight-red">ls</mark></mark> : Command<br/>→ <br/><mark class="highlight-red"><mark class="highlight-red">-F</mark></mark> : Option<br/>→ <br/><mark class="highlight-red">/</mark> :  Argument</li></ul></details></li></ul><ul id="a3161451-6037-47f3-a15e-41b87cbab22f" class="toggle"><li><details open=""><summary>Shortcuts and stuff</summary><ul id="6cad7353-3fcc-436d-8bfd-c8b1fde28bee" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue">tab key</mark> : Used for auto completion.</li></ul><ul id="eb12da41-ea80-47c1-adcb-0feb668dfa13" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue">. </mark>: To refer to the current working directory.</li></ul><ul id="77995c07-4c70-4d7e-9b9f-d6e6066b4763" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue">.. </mark>: To refer to the parent directory (of the current working directory).</li></ul><ul id="088e8736-020b-444a-b6db-7afa221af9d9" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue"><mark class="highlight-blue">cd</mark></mark> : This command alone will get you back to your home directory.</li></ul><ul id="dd6878cc-99c7-42c5-9032-a3f4161d9a95" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue">~</mark> : To refer to the home directory.</li></ul><ul id="e26c8c28-520f-4313-8840-f2a9fcfbba95" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">ctrl + c</mark></mark></mark></mark></mark>: Terminates the command.</li></ul><ul id="3fd9de3b-a82a-4a30-bd89-9edf966d9047" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">ctrl + a</mark></mark></mark></mark></mark>: Move to the begenning of a line.</li></ul><ul id="b1a0ed87-bc1a-4b0e-b753-159f82ff88b0" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">ctrl + c</mark></mark></mark></mark></mark>: Move to the end of a line.</li></ul><ul id="f9d93a5d-72df-404f-9243-82a49d4a2650" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue">↑</mark>/<mark class="highlight-blue">↓</mark> : To navigate between command history to access previously executed commands.<ul id="ddf9db64-ad8f-4a4d-939b-e649885b60d5" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-blue"><mark class="highlight-blue">!!</mark></mark> : Retrieves the very previous command executed (alternative to <mark class="highlight-blue">↑</mark>)</li></ul><ul id="16595d9a-a84b-4471-be72-703b4b6c806e" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-blue"><mark class="highlight-blue">!$</mark></mark> : Retrieves the last word of the last command. (Useful for long filenames)</li></ul></li></ul><ul id="65ba52e1-65a5-4995-aa12-c3f48c98484a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">ctrl + r</mark></mark></mark></mark></mark>:<ul id="c84fde60-71d5-458a-aa9e-80ba19b4f534" class="toggle"><li><details open=""><summary>(def)</summary><ul id="41dddd03-a212-4ebf-a656-b064a3caea35" class="bulleted-list"><li style="list-style-type:disc">Called the ‘reverse-i-search’ (’i’ stands for ‘incremental’.)<br/>→ *It ‘incrementally’ searches previous commands as you type.<br/></li></ul></details></li></ul><ul id="b6b469ec-0741-4518-98c7-d3e541436eda" class="toggle"><li><details open=""><summary>To use:</summary><ul id="181b127d-2364-4b75-b84d-d8447686378c" class="bulleted-list"><li style="list-style-type:disc">Press <mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">ctrl + r</mark></mark></mark></mark></mark></mark></mark></mark> to enter ‘reverse-i-search’ mode.</li></ul><ul id="793f6496-5cf9-4cff-8fcf-4f052903d4dd" class="bulleted-list"><li style="list-style-type:disc">Type in a keyword you want to search through history with.<br/>→ A result will be displayed.<br/></li></ul><ul id="ead64027-0d85-4241-986d-ce8b86f8a1a3" class="bulleted-list"><li style="list-style-type:disc">Press <mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">ctrl + r</mark></mark></mark></mark> to choose between other search results.</li></ul><ul id="ec3b00cb-5f56-49fe-b4da-8dbe426f8711" class="bulleted-list"><li style="list-style-type:disc">Either press <mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">enter</mark></mark></mark></mark></mark> to execute, <br/>or use <br/><mark class="highlight-blue">←</mark> and <mark class="highlight-blue">→ </mark>keys to make edits before executing.</li></ul></details></li></ul></li></ul></details></li></ul><ul id="adb74ebc-8d35-4348-8539-8ea1a890472f" class="toggle"><li><details open=""><summary>Options</summary><ul id="204daf9f-43b0-41cf-9308-63331d4bafb9" class="bulleted-list"><li style="list-style-type:disc">(def) Additional settings that can be provided in addition to a command.<ul id="780f16f8-1b17-4333-9150-e80b102c26b6" class="bulleted-list"><li style="list-style-type:circle">Adds changes to the command.</li></ul><ul id="1f0f0d36-c11e-4b24-a80c-f9d334f2515d" class="bulleted-list"><li style="list-style-type:circle">aka: ‘Flags’, ‘Switches’</li></ul><ul id="248a545a-9be1-4796-a8fc-eede55f84f2d" class="bulleted-list"><li style="list-style-type:circle">Short Options: Begins with a single dash (<mark class="highlight-red">-</mark>)</li></ul><ul id="5728de29-6783-4082-a046-f0baf0242f19" class="bulleted-list"><li style="list-style-type:circle">Long Options: Begins with two dashes (<mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red">--</mark></mark></mark>)</li></ul></li></ul><ul id="e1d8adcd-91c7-4f7c-80c9-cb13697b083f" class="bulleted-list"><li style="list-style-type:disc">(e.g.) <mark class="highlight-red">ls</mark> <mark class="highlight-blue">-F </mark>(’<mark class="highlight-blue"><mark class="highlight-blue">-F</mark></mark>’ is the option)</li></ul><ul id="ecd2d25f-106d-4589-b868-b93c304c71b2" class="bulleted-list"><li style="list-style-type:disc">To use multiple options within a single command (both -r &amp; -t options):<br/>→ <br/><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red">ls </mark></mark></mark></mark></mark></mark><mark class="highlight-yellow">-rt</mark></li></ul></details></li></ul><ul id="55cdc337-5d96-4134-9061-cc864419664d" class="toggle"><li><details open=""><summary>Arguments</summary><ul id="78aac4ce-d04f-4ddb-ad37-a852d0ccf724" class="bulleted-list"><li style="list-style-type:disc">(def) Simple parameters given on the system’s commandline.<ul id="edef367c-2ea6-4561-8642-bffa98f47e84" class="bulleted-list"><li style="list-style-type:circle">Tells the command what to opeate on.</li></ul></li></ul><ul id="d1086a72-ffd3-45de-9612-17dfbd8dc58a" class="bulleted-list"><li style="list-style-type:disc">(e.g.)<mark class="highlight-blue"> </mark><mark class="highlight-red">ls -F </mark><mark class="highlight-blue">Desktop/</mark><ul id="e7b455d2-4b10-45ad-9a34-775778e4fe5d" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-blue">Desktop</mark> is an <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">argument</span></span></span></span></span></span></span></span>. <br/>→ (The trailing <br/><mark class="highlight-blue">/ </mark>seems to be a convention to note that <mark class="highlight-blue">Desktop </mark>is a directory)</li></ul><ul id="a4380248-991f-4780-9bfe-35afa882fe4d" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-red"><mark class="highlight-red">-F</mark></mark> is an <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">option</span></span></span></span></span></span>.</li></ul><ul id="69909495-7f78-439e-9e96-2158cc06f3b4" class="bulleted-list"><li style="list-style-type:circle">This command lists the files in the <mark class="highlight-blue">Desktop </mark>directory, each classified with trailing symbols.</li></ul></li></ul></details></li></ul><ul id="3e8b92a5-34a1-4c62-a76d-644ea42314c8" class="toggle"><li><details open=""><summary>Operators (<mark class="highlight-blue">&gt;</mark>, <mark class="highlight-blue"><mark class="highlight-blue">&gt;&gt;</mark></mark>, <mark class="highlight-blue">|</mark> )</summary><ul id="87e0c5c4-09d8-4305-ae7b-8e1a0c474eb5" class="toggle"><li><details open=""><summary><mark class="highlight-blue">&gt;</mark></summary><ul id="0337d991-a754-4871-9da6-b0c2ebc18eaa" class="bulleted-list"><li style="list-style-type:disc">(def) Redirection operator for:<ul id="4aae3db0-16c0-4e44-8f32-fbbeefc1b2ba" class="bulleted-list"><li style="list-style-type:circle">Redirect the output of a command to a new file.</li></ul><ul id="dc7a730b-4500-44ab-9c6c-efb2dab6f186" class="bulleted-list"><li style="list-style-type:circle">If argument file already exists: Overwrites the file entered if file already exists.</li></ul></li></ul></details></li></ul><ul id="fc34e9b7-5054-4f95-a2d4-ad52ffca6d19" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue">&gt;&gt;</mark></mark></summary><ul id="3a83af0f-67c1-4031-beef-8b980b336b99" class="bulleted-list"><li style="list-style-type:disc">(def) Redirection operator for:<ul id="909fd122-bb4e-49e0-a052-0130d1be0c3a" class="bulleted-list"><li style="list-style-type:circle">Appending the output of a command to a file entered as argument.</li></ul><ul id="9fb851f5-2d7c-4c5f-8de1-d95196d29957" class="bulleted-list"><li style="list-style-type:circle">If argument file already exists: appending the output to the already existing file,</li></ul></li></ul></details></li></ul><ul id="b6afa5b3-7fc0-4340-a58f-e7c941c64720" class="toggle"><li><details open=""><summary><mark class="highlight-blue">|</mark></summary><ul id="c8e9f254-34ed-4186-8bd6-fb9f680cfbd9" class="toggle"><li><details open=""><summary>(def)</summary><ul id="cd07f8bb-6445-4f17-8944-382d2eb67956" class="bulleted-list"><li style="list-style-type:disc">Redirection operator used to run multiple commands in a single line.<ul id="a8759dfe-6cfd-4eda-85e0-36a2f35aea47" class="bulleted-list"><li style="list-style-type:circle">Called a ‘Pipe’</li></ul></li></ul><ul id="6374932d-1408-4dbc-8a28-d7eb95e48e72" class="bulleted-list"><li style="list-style-type:disc">The output of the first command gets used as the input for the second command.</li></ul></details></li></ul><ul id="104e779d-3ca9-4ef8-b8b3-1b250e9dd63c" class="toggle"><li><details open=""><summary><mark class="highlight-red">sort -n someFile.txt </mark><mark class="highlight-blue">|</mark><mark class="highlight-red"> head -n 1</mark></summary><ul id="2b5f539c-755b-4708-a7cc-fcbd9e64b1ca" class="bulleted-list"><li style="list-style-type:disc">Sorts the contents of <mark class="highlight-red">someFile.txt </mark>numerically, then outputs the very first line of the newly sorted content.</li></ul></details></li></ul></details></li></ul></details></li></ul><ul id="32ef1862-3f39-4a1e-8d81-a051a3753d12" class="toggle"><li><details open=""><summary><mark class="highlight-blue">ls</mark></summary><ul id="b81e5820-d38f-4791-876c-003f8a4d2709" class="toggle"><li><details open=""><summary>(def)</summary><ul id="cbdec18c-81f8-42c6-8cfc-73950f7f9d05" class="bulleted-list"><li style="list-style-type:disc">Lists files in the current directory.</li></ul><ul id="ef7fdea8-3f55-472a-b4c2-f8d4eb01b786" class="bulleted-list"><li style="list-style-type:disc">Short for ‘listing’.</li></ul></details></li></ul><ul id="25569859-f80c-4446-9125-75bec9431d1b" class="toggle"><li><details open=""><summary><mark class="highlight-blue">ls</mark> <mark class="highlight-red"><mark class="highlight-red">-F</mark></mark></summary><ul id="7433b223-7798-4bdf-b8bc-f9d8fef566ab" class="bulleted-list"><li style="list-style-type:disc">(def) The <mark class="highlight-red"><mark class="highlight-red">-F</mark></mark> ‘option’ tells <mark class="highlight-blue"><mark class="highlight-blue">ls</mark></mark> to classsify the output to indicate whether each output is a <span style="border-bottom:0.05em solid">directory</span>, <span style="border-bottom:0.05em solid">link</span>, or an <span style="border-bottom:0.05em solid">executable</span>. (With a trailing symbol)</li></ul><ul id="2dbb96e7-c5d7-46e6-80a7-0fea45e7e291" class="bulleted-list"><li style="list-style-type:disc">(e.g.)<ul id="80365042-07e4-451a-a18b-1ed4a6e7c147" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-red">someDirectory</mark><mark class="highlight-blue">/<br/><br/></mark>→ Indicates a directory.</li></ul><ul id="8beb4ad9-cd62-4bd3-99f7-24e4de77eb00" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-red">someLink</mark><mark class="highlight-blue">@<br/><br/></mark>→ Indicates a link</li></ul><ul id="70b89e27-c0b0-44e8-99bd-45019eb5f1cd" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-red">someExecutable</mark><mark class="highlight-blue">*<br/><br/></mark>→ Indicates an executable</li></ul><ul id="a2ec5507-3ad5-49e8-99e5-8332bd9c3239" class="bulleted-list"><li style="list-style-type:circle">*Output with no symbol indicates files in the current working directory.<br/><br/></li></ul></li></ul></details></li></ul><ul id="ca41f89b-6e38-40b3-aafb-256d9e695b6f" class="toggle"><li><details open=""><summary><mark class="highlight-blue">ls</mark> <mark class="highlight-red"><mark class="highlight-red">-a</mark></mark></summary><ul id="9a1a454d-c75a-4098-9e0a-284d9799c3c8" class="bulleted-list"><li style="list-style-type:disc">(def) Lists all directories and files, including hidden ones, in the current working directory.</li></ul><ul id="d4a40e35-48ea-414c-b539-bdad04e77dcd" class="bulleted-list"><li style="list-style-type:disc">Stands for ‘show all’.</li></ul><ul id="c011e627-afce-453e-a9b3-584a9e22a288" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">.  </mark></mark></mark></mark></mark>: Refers to the current working directory.</li></ul><ul id="171b1b99-2375-4f24-b4b6-d488790d6fc6" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue"><mark class="highlight-blue">..</mark></mark> : Refers to the parent directory.</li></ul></details></li></ul><ul id="b6da0a41-927a-4328-bf40-4e3888b57d36" class="toggle"><li><details open=""><summary><mark class="highlight-blue">ls</mark> <mark class="highlight-red"><mark class="highlight-red">-l</mark></mark></summary><ul id="8ccc4d41-3b8d-4bf1-bea6-ab01c1e4daa4" class="bulleted-list"><li style="list-style-type:disc">(def) Lists files in the <span style="border-bottom:0.05em solid">long format</span>, which provides the following information for each file: permissions/# of links/owner/group/size/timstamp/name</li></ul></details></li></ul><ul id="6672e5ca-9e2a-45ec-b15b-72b0e117344c" class="toggle"><li><details open=""><summary><mark class="highlight-red">man</mark><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"> ls</mark></mark></mark></mark></mark></mark></mark></mark></summary><ul id="41021023-1057-449a-b04a-6190a5d7f591" class="bulleted-list"><li style="list-style-type:disc">(def) Turns your terminal into a page with a description of the ls commands and its <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">options</span></span></span></span></span></span></span>.</li></ul><ul id="08f154d3-6590-44ce-b804-427a51225db9" class="bulleted-list"><li style="list-style-type:disc">To quit: Press ‘q’</li></ul></details></li></ul><ul id="ae9a6ace-eb6c-499f-b5f9-b1a18f1181c4" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">ls </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-red">--help</mark></summary><ul id="3875df72-791a-4791-a865-08560daec61d" class="bulleted-list"><li style="list-style-type:disc">(def) Displays information on how to use the command or program.</li></ul><ul id="0153d6ad-7105-496d-9177-13e5e4b7e6f2" class="bulleted-list"><li style="list-style-type:disc">*Doesn’t seem to work on your Terminal.</li></ul></details></li></ul></details></li></ul><ul id="7e680e69-86ac-4b1f-8d20-2933178faa23" class="toggle"><li><details open=""><summary><mark class="highlight-blue">pwd</mark></summary></details></li></ul><ul id="0b892e86-266f-45d7-b39c-96917eafdb02" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue">cd</mark></mark></summary><ul id="ef642d2c-48a1-46a8-8214-8fc42853addd" class="toggle"><li><details open=""><summary>(def)</summary><ul id="2bc6d91d-b082-425a-8c7c-23493e569fc0" class="bulleted-list"><li style="list-style-type:disc">Short for ‘change directory’.</li></ul><ul id="d024275c-d041-40f5-ac8d-03aabbaa3bf7" class="bulleted-list"><li style="list-style-type:disc">Akin to double-clicking in a GUI.</li></ul><ul id="dad815a9-3a95-430a-a3ab-0d7f9b940f4a" class="bulleted-list"><li style="list-style-type:disc">This command actually <span style="border-bottom:0.05em solid">changes the shell’s current working directory</span>,<br/>rather than <br/><span style="border-bottom:0.05em solid">changing the directory</span> as the command might have you think.</li></ul></details></li></ul><ul id="c9dcd004-280c-4ba9-b101-8868fd22a896" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue">cd</mark></mark></summary><ul id="5b349eea-38fa-4d6e-879c-2c90555f101e" class="bulleted-list"><li style="list-style-type:disc">(def) Command which returns you to the home directory.</li></ul><ul id="a1f3470d-2c84-49ec-819c-9c145aed42fb" class="bulleted-list"><li style="list-style-type:disc">Same as the <mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cd</mark></mark></mark></mark><mark class="highlight-red"> ~</mark> command.</li></ul></details></li></ul><ul id="a4bc62f3-60f8-4b50-aa61-fafc9107ff8a" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cd </mark></mark></mark></mark><mark class="highlight-red">-</mark></summary><ul id="4148633e-605c-471c-8c3b-cf8a69d58453" class="bulleted-list"><li style="list-style-type:disc">(def) Changes the current working directory to its <span style="border-bottom:0.05em solid">previous</span> directory.</li></ul></details></li></ul><ul id="3c4f7bbf-1801-4d39-b15e-ce326148f392" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cd </mark></mark></mark></mark><mark class="highlight-red">.</mark></summary><ul id="a399d9de-5c56-419a-8762-f07019b6fcb5" class="bulleted-list"><li style="list-style-type:disc">(def) Changes the current working directory to the current directory, essentially changed nothing.</li></ul><ul id="8e7e14a9-10b5-4551-835f-8a4587209cab" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red">. </mark>references the current working directory.</li></ul></details></li></ul><ul id="94e9b5c0-b514-4ec6-a13d-9492e6a9d418" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cd </mark></mark></mark></mark><mark class="highlight-red">..</mark></summary><ul id="eb786a7f-f00d-4f9c-9832-ad79f0bd1d12" class="bulleted-list"><li style="list-style-type:disc">(def) Changes the current working directory to its <span style="border-bottom:0.05em solid">parent</span> directory.</li></ul></details></li></ul><ul id="1b81057c-315e-4cf0-a7ee-cea83688320c" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cd</mark></mark></mark></mark><mark class="highlight-red"> ~</mark></summary><ul id="a829dd51-a03e-4608-9c0f-f761238586e1" class="bulleted-list"><li style="list-style-type:disc">(def) Command which changes your current working directory to the current user’s home directory.</li></ul><ul id="a6cb25b6-7b1e-4be4-ac55-0a998b3ad366" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cd</mark></mark></mark></mark><mark class="highlight-red"> ~</mark><mark class="highlight-yellow">/Desktop/anotherFolder</mark><mark class="highlight-red"> </mark>: Abbreviates what would have been <mark class="highlight-red">/Users/lyuhiroyama</mark><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"> </mark></mark></mark></mark></mark></mark></mark></mark>with <mark class="highlight-red">~</mark>.</li></ul></details></li></ul><ul id="654fe971-9c25-4d20-9687-5f35ffc5bf08" class="toggle"><li><details open=""><summary><mark class="highlight-red">man </mark><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cd</mark></mark></mark></mark></summary><ul id="b4db1296-6586-497a-8830-ddd8111d1d11" class="bulleted-list"><li style="list-style-type:disc">(def) Turns your terminal into a page with a description of the<mark class="highlight-blue"> cd </mark>commands and its <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">options</span></span></span></span></span></span></span>.</li></ul></details></li></ul></details></li></ul><ul id="e434fb5e-5ae3-4971-a078-98cfb4e6219b" class="toggle"><li><details open=""><summary><mark class="highlight-blue">clear</mark></summary><ul id="8874cd27-50c8-44ad-8598-0fda6af19d45" class="bulleted-list"><li style="list-style-type:disc">(def) Clears the screen.</li></ul></details></li></ul><ul id="0c2f5c32-8ecf-4764-aa72-33ecbbdc28bc" class="toggle"><li><details open=""><summary><mark class="highlight-blue">mkdir</mark></summary><ul id="f2f8c854-1264-4647-8d78-acee3af48342" class="toggle"><li><details open=""><summary>(def)</summary><ul id="7553b403-c562-484e-9ba4-a1975e4ddfc2" class="bulleted-list"><li style="list-style-type:disc">Command used to make directories with.</li></ul></details></li></ul><ul id="dba7ad6c-9e36-4e52-b6d0-b79029c3c4d9" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">mkdir</mark></mark></mark><mark class="highlight-purple"> folder1 folder2</mark></summary><ul id="2ede2e7e-88bf-49ed-aebd-a387388c78a0" class="bulleted-list"><li style="list-style-type:disc">Creates two directories with one command.</li></ul></details></li></ul><ul id="c25c1543-7224-4d88-81db-9593b903faef" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">mkdir</mark></mark></mark><mark class="highlight-yellow"> -p</mark><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"> </mark></mark></mark><mark class="highlight-purple">folder1</mark><mark class="highlight-red">/</mark><mark class="highlight-purple">folder2</mark><mark class="highlight-red">/</mark></summary><ul id="8b3cae28-d047-49ce-a2bd-ae72ea83d964" class="bulleted-list"><li style="list-style-type:disc">Creates a directory hierarchy where <mark class="highlight-purple">folder2</mark> is a subdirectory of <mark class="highlight-purple">folder1</mark>.</li></ul><ul id="01765f90-6b3b-42de-a373-a9498838f699" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow">-p </mark>: Causes <mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">mkdir</mark></mark></mark> to to create <span style="border-bottom:0.05em solid">intermediate subdirectories</span> as required.</li></ul></details></li></ul></details></li></ul><ul id="345ac47e-1bbb-4a52-9b3a-6f677b639c19" class="toggle"><li><details open=""><summary><mark class="highlight-blue">nano</mark></summary><ul id="c8e7aab3-6136-4bf3-9dd2-1f1983ab3ddb" class="toggle"><li><details open=""><summary>(def)</summary><ul id="95888c37-f581-4dd7-ad09-61dd610c795f" class="bulleted-list"><li style="list-style-type:disc">Refers to the command-line text editor ‘GNU nano’. Exists within the Terminal app.</li></ul></details></li></ul><ul id="db615410-da90-4568-a232-1e6c13a8b95c" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">nano</mark></mark></mark></mark></summary><ul id="d09e23a3-dc61-46ad-ad1d-b53de809336b" class="bulleted-list"><li style="list-style-type:disc">(def) Opens the nano text editorwith an empty <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">buffer</span></span></span></span></span></span>. <ul id="6fc54ed5-7808-4889-b87c-5f6559a49d55" class="bulleted-list"><li style="list-style-type:circle">(i.e.) opening nano without a specified file to edit.</li></ul><ul id="07962222-0071-4649-b551-cea8735f5b18" class="bulleted-list"><li style="list-style-type:circle">*Buffer : Temporary memory area in which data is stored while it is being processed/transferred.</li></ul></li></ul></details></li></ul><ul id="e26ca1a8-84eb-4d29-a7a3-dc72361282ad" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">nano </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-yellow">textFile.txt</mark></summary><ul id="1dd7fd47-5c5b-4e90-9cbf-fd0c8a108ab6" class="bulleted-list"><li style="list-style-type:disc">(def) Opens the nano text editor, creates a <mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">.txt</mark></mark></mark></mark> file, and open it for editing.</li></ul></details></li></ul></details></li></ul><ul id="e1b02652-2ef6-4ccf-9c18-a917ebc0aa60" class="toggle"><li><details open=""><summary><mark class="highlight-blue">touch</mark></summary><ul id="a2c482de-9ed5-485e-b1ae-43c0d4258be1" class="toggle"><li><details open=""><summary>(def)</summary><ul id="10d21449-a949-496e-90e9-4e6e2579413d" class="bulleted-list"><li style="list-style-type:disc">(geeks) Command used to create/change/modify timestamps of a file.</li></ul><ul id="c73a6aaf-4a28-4ed9-8f86-44aac045cafe" class="bulleted-list"><li style="list-style-type:disc">Can also be used to create empty<mark class="highlight-blue"> .txt </mark>files with.</li></ul></details></li></ul><ul id="09dc5bcb-1720-4894-a377-191606ce2ae1" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">touch </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-yellow">textFile.txt</mark></summary><ul id="2578d557-3316-4925-9841-2d16095a65da" class="bulleted-list"><li style="list-style-type:disc">(def) Creates an empty <mark class="highlight-yellow">.txt</mark> file.</li></ul></details></li></ul></details></li></ul><ul id="76456de0-7475-43a1-b1f9-c23e82ee9564" class="toggle"><li><details open=""><summary><mark class="highlight-blue">rm</mark></summary><ul id="79d85fba-0afd-43ea-b537-9180d0202db5" class="toggle"><li><details open=""><summary>(def)</summary><ul id="2475ed0c-df5d-470a-9259-6a14fcf16f41" class="bulleted-list"><li style="list-style-type:disc">Removes/Deletes files (forever).</li></ul><ul id="7e8acafd-b376-41eb-afd9-ea786e696400" class="bulleted-list"><li style="list-style-type:disc">Removing a directory (and not a file) requires the <mark class="highlight-purple">-r</mark> option.</li></ul></details></li></ul><ul id="ff7959b2-0084-47f6-9d44-a570106cf689" class="toggle"><li><details open=""><summary><mark class="highlight-blue">rm </mark><mark class="highlight-purple">textFile.txt</mark></summary><ul id="07049d0c-e978-4a67-ad0c-f9dd41880018" class="bulleted-list"><li style="list-style-type:disc">(def) Removes the text file.</li></ul></details></li></ul><ul id="f53d69d1-eb49-4784-84d2-893bfa9bcf2b" class="toggle"><li><details open=""><summary><mark class="highlight-blue">rm</mark><mark class="highlight-yellow"> -r</mark><mark class="highlight-blue"> </mark><mark class="highlight-purple">someDirectory</mark></summary><ul id="cb192237-0166-4233-aeaa-73bd1e0b0c5e" class="bulleted-list"><li style="list-style-type:disc">Deletes the <mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple">someDirectory</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark> directory.</li></ul></details></li></ul><ul id="20b3a590-21aa-444e-b82b-c55912868184" class="toggle"><li><details open=""><summary><mark class="highlight-blue">rm </mark><mark class="highlight-yellow">-i </mark><mark class="highlight-purple">textFile.txt</mark></summary><ul id="97573041-9d12-47a8-8648-8e4c0f2fe208" class="bulleted-list"><li style="list-style-type:disc">Removes <mark class="highlight-purple">textFile.txt</mark>, but prompts the user before deletion for confirmation.</li></ul></details></li></ul></details></li></ul><ul id="3534b010-2034-45bb-85fa-97f188a498b0" class="toggle"><li><details open=""><summary><mark class="highlight-blue">mv</mark></summary><ul id="1571cc14-4fe0-45ab-986c-f9f2a74ad2e1" class="toggle"><li><details open=""><summary>(def)</summary><ul id="b82bebd6-0f3a-4c71-8571-0133b4aa69b1" class="bulleted-list"><li style="list-style-type:disc">Command for moving files &amp; directories. Also for renaming files.</li></ul><ul id="7601b682-18a1-4823-b7fa-d61f3e30802a" class="bulleted-list"><li style="list-style-type:disc">‘moving’</li></ul></details></li></ul><ul id="39c161e3-d5cf-4446-968f-309fdd4b0860" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue">mv</mark></mark> <mark class="highlight-purple">textFile.txt</mark><mark class="highlight-yellow"> ~/Desktop/</mark></summary><ul id="1fd03033-4753-4a88-a34b-1fd9ab1258d2" class="bulleted-list"><li style="list-style-type:disc">(def) Moves the <mark class="highlight-purple">textFile.txt</mark><mark class="highlight-red"> </mark>in the current working directory to the <mark class="highlight-yellow">~/Desktop/ </mark>directory.</li></ul></details></li></ul><ul id="c41a7bca-b857-4e23-ab19-0bc894caab57" class="toggle"><li><details open=""><summary><mark class="highlight-blue">mv</mark><mark class="highlight-purple"> textFile.txt</mark> <mark class="highlight-yellow">newName.txt</mark></summary><ul id="73fd715e-16da-47e0-a69d-d471c5acbf09" class="bulleted-list"><li style="list-style-type:disc">(def) Changes the name of the file (in the current working directory) <mark class="highlight-purple">textFile</mark> to<mark class="highlight-red"> </mark><mark class="highlight-yellow">newName</mark>.</li></ul></details></li></ul><ul id="06376c90-72aa-4cd8-b07a-713b74c95646" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue">mv</mark></mark> <mark class="highlight-red">Desktop/</mark><mark class="highlight-purple">textFile.txt </mark><mark class="highlight-red">Downloads/</mark><mark class="highlight-yellow">newName.txt</mark></summary><ul id="c53e8be9-663d-453f-b054-c7e9dd24f8ec" class="bulleted-list"><li style="list-style-type:disc">(def) Changes the name of the <mark class="highlight-purple">textFile.txt </mark>file in the <mark class="highlight-red">Desktop</mark> directory,<br/>to <br/><mark class="highlight-yellow">newName.txt</mark> and moves the file to the <mark class="highlight-red">Downloads</mark> directory.</li></ul></details></li></ul></details></li></ul><ul id="1631bacb-8383-4624-8320-4d14827e63e7" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue">cp</mark></mark></summary><ul id="8cbfeaf0-76b1-4ee2-9891-4f54571ffeb2" class="toggle"><li><details open=""><summary>(def)</summary><ul id="8d72d58c-28e6-4f5d-9c6f-669a8611f499" class="bulleted-list"><li style="list-style-type:disc">Command for copying files/directories.</li></ul></details></li></ul><ul id="5bf84752-5ff5-4019-a2df-4ce1fc4bdebc" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cp </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-purple">textFile.txt</mark><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"> </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-red">Desktop/</mark><mark class="highlight-purple">duplicatedFile.txt </mark>(Copying files)</summary><ul id="0dd574af-ea22-4650-bbfa-349f012cef24" class="bulleted-list"><li style="list-style-type:disc">Copies the <mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple">textFile.txt</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark> file and pastes it into the <mark class="highlight-red">Desktop </mark>directory with the name <mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple">duplicatedFile.txt</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>.</li></ul></details></li></ul><ul id="3eab4b43-ea62-476f-9474-cd2055b5d968" class="toggle"><li><details open=""><summary><mark class="highlight-blue">cp</mark><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"> -r </mark></mark></mark></mark></mark></mark></mark><mark class="highlight-yellow">folder/</mark><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"> </mark></mark></mark></mark></mark></mark></mark><mark class="highlight-yellow">backupFolder/ </mark>(Copying directories?)</summary><ul id="96892236-9c70-484a-94e8-361b53fedb40" class="bulleted-list"><li style="list-style-type:disc">Copies the <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">entire</span></span></span></span></span></span> <mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow">folder</mark></mark></mark></mark></mark></mark> directory and pastes it in the <mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow">backupFolder </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark>directory.</li></ul><ul id="1f86f8c8-74ef-4653-9a5a-358354f4def5" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple">-r </mark></mark></mark></mark></mark></mark></mark>: idk. something to do with recursion.</li></ul></details></li></ul><ul id="3e77ac66-19cf-4155-89f7-2f8659db1b53" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cp </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-purple">textFile.txt textFile2.txt </mark><mark class="highlight-yellow">someDirectory </mark>(Copying multiple files)</summary><ul id="2b558466-6c08-464d-bedd-de418840730c" class="bulleted-list"><li style="list-style-type:disc">As shown. When copying multiple file names to a directory, the destination directory must be the last argument.</li></ul><ul id="1be450b3-1da1-41c3-8866-df1d15d8c543" class="bulleted-list"><li style="list-style-type:disc">When copying multiple files, shell expects the last argument to be a directory (and not a file).</li></ul></details></li></ul></details></li></ul><ul id="f18c6a78-1aa7-44ef-872c-2fda9378d7a7" class="toggle"><li><details open=""><summary><mark class="highlight-blue">* </mark></summary><ul id="1ec5694d-048c-4646-9c5d-efcad4026f89" class="toggle"><li><details open=""><summary>(def)</summary><ul id="b44d5015-ef97-406b-85c9-9b0185edfd0e" class="bulleted-list"><li style="list-style-type:disc">A <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">wildcard</span></span></span></span></span></span></span></span> which represents <span style="border-bottom:0.05em solid">one or more</span> characters.</li></ul><ul id="a0345edc-e2dc-4f29-90e4-9dd1aeff75cb" class="bulleted-list"><li style="list-style-type:disc">Wildcards are useful for working with multiple files at once. (<a href="https://swcarpentry.github.io/shell-novice/03-create.html">link</a>)</li></ul></details></li></ul></details></li></ul><ul id="01a80670-2e1d-44e4-ba4a-534c336a9a04" class="toggle"><li><details open=""><summary><mark class="highlight-blue">?</mark></summary><ul id="bc68869c-11bc-4e44-b58b-54dfcd4a34f1" class="toggle"><li><details open=""><summary>(def)</summary><ul id="09da7cbe-a352-4b1b-a09d-7e82487beb0b" class="bulleted-list"><li style="list-style-type:disc">A <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">wildcard</span></span></span></span></span></span></span></span> which represents <span style="border-bottom:0.05em solid">exactly one</span> characters.</li></ul><ul id="f27a8c08-0a09-48ee-9fc5-f3c6319e7cd3" class="bulleted-list"><li style="list-style-type:disc">Wildcards are useful for working with multiple files at once. (<a href="https://swcarpentry.github.io/shell-novice/03-create.html">link</a>) </li></ul></details></li></ul></details></li></ul><ul id="93ced3f5-a39b-49e6-b485-b3225f4acfb7" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue">wc</mark></mark></summary><ul id="5cf23d86-37e4-4b65-b974-28f7f0549a24" class="toggle"><li><details open=""><summary>(def)</summary><ul id="73d03957-7bde-4db6-b511-35fb5a97a78b" class="bulleted-list"><li style="list-style-type:disc">Command which counts the number of <span style="border-bottom:0.05em solid">lines</span>, <span style="border-bottom:0.05em solid">words</span> &amp; <span style="border-bottom:0.05em solid">characters</span> in a file.</li></ul><ul id="ad17acd8-3c04-44a9-90a5-de5218f18848" class="bulleted-list"><li style="list-style-type:disc">‘word count’</li></ul></details></li></ul><ul id="2326bc6b-6abc-4a11-b3d4-2395680fdab6" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">wc </mark></mark></mark><mark class="highlight-red">someFile.txt</mark></summary></details></li></ul><ul id="53604937-29f9-4806-9811-3dd83bb65eb2" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">wc </mark></mark></mark><mark class="highlight-purple">*</mark><mark class="highlight-red">.txt</mark></summary><ul id="9ed32800-cfde-4c18-ac27-d1ffa3f7e483" class="bulleted-list"><li style="list-style-type:disc">Gets the word count information for all files in the current working directory with the<mark class="highlight-red"> .txt</mark> extension. Utilizes the <mark class="highlight-purple">* </mark>wildcard.</li></ul></details></li></ul><ul id="f4e47a54-3f88-43e4-b721-b02fa6de20b0" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">wc -l </mark></mark></mark><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">someFile.txt</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></summary><ul id="fe620698-1ba5-496a-aedd-39a3389114d9" class="bulleted-list"><li style="list-style-type:disc">Only displays the <span style="border-bottom:0.05em solid">line</span> count.</li></ul></details></li></ul><ul id="4804362b-cec9-467b-8ffd-312672b7be9e" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">wc -w </mark></mark></mark><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">someFile.txt</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></summary><ul id="87badd6e-bd63-43d7-9167-2f649a7f9aec" class="bulleted-list"><li style="list-style-type:disc">Only displays the <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">word</span></span></span></span> count.</li></ul></details></li></ul><ul id="e8776ee1-4e86-4948-a88a-5146a7814e63" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">wc -m </mark></mark></mark><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">someFile.txt</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></summary><ul id="83b002dd-7f08-4145-8fa9-9f5ed688e68f" class="bulleted-list"><li style="list-style-type:disc">Only displays the <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">character</span></span></span></span></span></span></span></span></span> count.</li></ul></details></li></ul><ul id="d6e33c2a-e7fb-45ac-b27b-678449b73a41" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">wc </mark></mark></mark></mark><mark class="highlight-red">-l</mark><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"> </mark></mark></mark></mark><mark class="highlight-yellow">*.pdb</mark><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"> </mark></mark></mark></mark><mark class="highlight-purple">&gt;</mark><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"> </mark></mark></mark></mark><mark class="highlight-purple">textFile.txt</mark></summary><ul id="242e92db-70e0-43ed-9200-e6b1bcb0a112" class="bulleted-list"><li style="list-style-type:disc">Gets the line count for every file with a <mark class="highlight-yellow">.pdb</mark><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"> </mark></mark></mark></mark>suffix, then <mark class="highlight-purple">redirects</mark> the output to a separate textFile. Could be a new file or a pre-existing one (which you would then overwrite).</li></ul><ul id="07a9aacf-936e-4e4d-ae21-7b27065639b6" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple">&gt; </mark></mark></mark></mark>: Redirection operator</li></ul></details></li></ul></details></li></ul><ul id="4d326864-905d-463c-8de2-0c9ba168aab8" class="toggle"><li><details open=""><summary><mark class="highlight-blue">cat</mark></summary><ul id="d1724cb2-400e-489f-8a5a-6df253814a3b" class="toggle"><li><details open=""><summary>(def) </summary><ul id="e855d959-5e01-436a-a34f-86b16b2f9f6b" class="bulleted-list"><li style="list-style-type:disc">Reads data from the file and gives its content as output.</li></ul><ul id="8635a16f-00ee-40ea-9810-26013bbbd56b" class="bulleted-list"><li style="list-style-type:disc">Accepts multiple files as argument. Will concatenate then output.</li></ul><ul id="897e5920-f7da-4510-bc4e-936edec1cfe2" class="bulleted-list"><li style="list-style-type:disc">‘con<mark class="highlight-blue">cat</mark>enate’</li></ul></details></li></ul><ul id="a0308f45-9066-4fce-9ca8-3915ecb4b322" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cat </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-purple">textFile.pdb </mark></summary><ul id="81dc0b4a-41a2-492f-bcdf-93ba111b7a95" class="bulleted-list"><li style="list-style-type:disc">Outputs contents of the <mark class="highlight-purple">textFile.pdb </mark>file.</li></ul></details></li></ul><ul id="aa8348d3-9fa8-4da8-8435-7c0c502a2893" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cat </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-purple">textFile.pdb textFile2.pdb</mark></summary></details></li></ul></details></li></ul><ul id="3bb7c32d-87dd-43d4-a8a8-24f808fe6cba" class="toggle"><li><details open=""><summary><mark class="highlight-blue">less</mark></summary><ul id="ad4a58ab-1810-4189-b53d-d0e5f5425463" class="toggle"><li><details open=""><summary>(def) </summary><ul id="0e581a0d-8232-4f0c-8200-2f74eb725336" class="bulleted-list"><li style="list-style-type:disc">Command for displaying a <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">screenful</span></span></span></span></span> of a file, then stops.<br/>(As opposed to dumping the whole content of a file like <br/><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cat</mark></mark></mark> does).</li></ul><ul id="637933bd-9949-4beb-a97c-beda97d9eb4a" class="bulleted-list"><li style="list-style-type:disc">*<span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">Screenful</span></span></span></span></span></span></span></span></span> : A unit of content that fits within the current size of the Terminal window.</li></ul><ul id="5f907bf9-377a-4e33-afde-a7f7022ac6cf" class="bulleted-list"><li style="list-style-type:disc">Controls:<ul id="08d7cb1e-161c-4c8c-a2cf-0c84d6b9faa0" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-purple">spacebar</mark> : Move one <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">screenful</span></span></span></span></span></span></span></span></span>. (Might be something else in Terminal idk)</li></ul><ul id="92bd4419-6f21-4d7b-a791-878d5a76d4c3" class="bulleted-list"><li style="list-style-type:circle"> <mark class="highlight-purple">b </mark>: Move back one <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">screenful</span></span></span></span></span></span></span></span></span>.</li></ul><ul id="539124b0-d3b9-4ce1-b5c4-45d075f012e0" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-purple">q </mark>: Quit.</li></ul></li></ul></details></li></ul><ul id="18056529-1a18-48e5-b85a-bd77f9f6290f" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">less  </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-purple">textFile.pdb </mark></summary></details></li></ul><ul id="0f019735-8a39-4a3c-9fbc-99fc9c1cee7d" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cat </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-purple">textFile.pdb textFile2.pdb</mark></summary></details></li></ul></details></li></ul><ul id="31c887b4-f425-413e-aa7d-278bfd348255" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">echo</mark></mark></mark></mark></summary><ul id="50e31dab-2999-4513-b72c-11b7735f6f0c" class="toggle"><li><details open=""><summary>(def) </summary><ul id="bb305f8a-9110-44cc-9be1-a307a2f0429b" class="bulleted-list"><li style="list-style-type:disc">Displays lines of text/string which as passed as arguments.</li></ul></details></li></ul><ul id="e403ee37-2e86-44e8-9543-647b6c3c30c5" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">echo </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-red">Neva Lost</mark></summary><ul id="871d32a6-1146-40b5-a5a3-06350cf04dc5" class="bulleted-list"><li style="list-style-type:disc">Outputs “<mark class="highlight-red">Neva Lost</mark>”</li></ul></details></li></ul><ul id="613983b3-de53-470f-988a-9d117c8473b7" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">echo </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-red">Neva Lost </mark><mark class="highlight-yellow">&gt;&gt; someFile.txt</mark></summary><ul id="09b5710a-5d3c-48e7-9d5d-00f60a2e4ada" class="bulleted-list"><li style="list-style-type:disc">Appends the output of the <mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">echo</mark></mark></mark></mark></mark></mark></mark></mark></mark></mark> command to <mark class="highlight-yellow">someFile.txt </mark>that it may or may not already exist.</li></ul></details></li></ul></details></li></ul><ul id="8c55c859-d9d3-418e-9030-a3996b0877f0" class="toggle"><li><details open=""><summary><mark class="highlight-blue">sort</mark></summary><ul id="62d5fcba-e564-41b9-b884-fd1fdeb7e163" class="toggle"><li><details open=""><summary>(def)</summary><ul id="616271ae-880a-4865-b016-f9b3c0dde029" class="bulleted-list"><li style="list-style-type:disc">Command for sorting the contents of a file.</li></ul><ul id="b3069a7f-d9cd-47ba-b486-b0ccd9b29822" class="bulleted-list"><li style="list-style-type:disc">This command does not change the file. It simply displays the sorted result in the output.</li></ul><ul id="ba8a0071-4adc-49f9-8ddc-57c9ad3ea52e" class="bulleted-list"><li style="list-style-type:disc">Sorts in an alphabetical order by default, without an option.</li></ul></details></li></ul><ul id="16749b91-6493-4c80-9c86-41d208941530" class="toggle"><li><details open=""><summary><mark class="highlight-blue">sort </mark><mark class="highlight-purple">textFile.txt</mark></summary><ul id="157ff977-5315-4c17-8bb3-00f7ae284c27" class="bulleted-list"><li style="list-style-type:disc">Sorts the contents in the file in an <span style="border-bottom:0.05em solid">alphebatical order</span>.</li></ul></details></li></ul><ul id="e2db99de-283d-4ad2-9c02-2806bab7863d" class="toggle"><li><details open=""><summary><mark class="highlight-blue">sort </mark><mark class="highlight-yellow">-n</mark><mark class="highlight-blue"> </mark><mark class="highlight-purple">textFile.txt</mark></summary><ul id="ed273bcc-b142-45cf-a7e8-1638ee167d60" class="toggle"><li><details open=""><summary>Sorts the content in the file in a <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">numerical order</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>.</summary></details></li></ul></details></li></ul><ul id="45231e62-16b3-4172-9a78-2c70906ca173" class="toggle"><li><details open=""><summary><mark class="highlight-blue">sort </mark><mark class="highlight-purple">textFile.txt </mark><mark class="highlight-yellow">&gt; newFile.txt</mark></summary><ul id="fa855e53-93c6-4b53-8cc1-8463943f1050" class="bulleted-list"><li style="list-style-type:disc">Sorts the contents of <mark class="highlight-purple">textFile.txt</mark>, then places the alphabetically sorted contents in a new file <mark class="highlight-yellow">newFile.txt </mark>(or overrides it).</li></ul></details></li></ul></details></li></ul><ul id="63b410e5-2be9-4826-8649-9fb7f5409de0" class="toggle"><li><details open=""><summary><mark class="highlight-blue">head</mark></summary><ul id="79dbfcd4-6601-4ab8-9719-a21dcfaee237" class="toggle"><li><details open=""><summary>(def)</summary><ul id="5661f6a2-ba95-4253-9b47-27e3a14f8bd7" class="bulleted-list"><li style="list-style-type:disc">Outputs a specified number of lines/bytes of the <span style="border-bottom:0.05em solid">start</span> of a specified file(s).</li></ul></details></li></ul><ul id="24169a8d-4597-4999-be2d-cf8ed3d4bbf6" class="toggle"><li><details open=""><summary><mark class="highlight-blue">head </mark><mark class="highlight-purple">-n </mark><mark class="highlight-yellow">1</mark><mark class="highlight-purple"> </mark><mark class="highlight-red">textFile.txt</mark></summary><ul id="492fd4d5-ff56-454b-a7c2-3f550013762d" class="bulleted-list"><li style="list-style-type:disc">(def) Outputs the <mark class="highlight-yellow">first</mark> <mark class="highlight-purple">line</mark> of the <mark class="highlight-red">textFile.txt</mark> file.</li></ul><ul id="77ebeab7-7958-4783-8e2f-c3d6b43d08ab" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-purple">-n </mark>: Sets the unit used for the amount of content to output to the <span style="border-bottom:0.05em solid">nuber of lines</span>.</li></ul><ul id="1913276a-42f3-45f6-bc09-f6e006ded1a4" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-purple">1 </mark>: Sets the number of selected unit to display (in this case # of lines) to<mark class="highlight-purple"> </mark><mark class="highlight-yellow">1</mark>.</li></ul></details></li></ul><ul id="3ccaa53b-ff75-451a-a316-ce41366c1e5d" class="toggle"><li><details open=""><summary><mark class="highlight-blue">head </mark><mark class="highlight-purple">-n 20 </mark><mark class="highlight-red">textFile.txt</mark></summary><ul id="70747cb4-ec98-4a31-9810-c1bf25d8a77a" class="bulleted-list"><li style="list-style-type:disc">Outputs the first 20 lines of the <mark class="highlight-red">textFile.txt </mark>file.</li></ul></details></li></ul></details></li></ul><ul id="4ab08fa5-457b-4573-9772-7b24b59d8e26" class="toggle"><li><details open=""><summary><mark class="highlight-blue">tail</mark></summary><ul id="cab260fe-2d58-48a1-ab0f-05b92bd90333" class="toggle"><li><details open=""><summary>(def)</summary><ul id="26e1beab-aa48-44da-88e9-4cc685c22ba8" class="bulleted-list"><li style="list-style-type:disc">Outputs a specified number of lines/bytes of the <span style="border-bottom:0.05em solid">end</span> of a specified file(s).</li></ul></details></li></ul><ul id="f1bec9b8-598d-4db5-9034-7d7fca6d34f4" class="toggle"><li><details open=""><summary><mark class="highlight-blue">tail </mark><mark class="highlight-purple">-n </mark><mark class="highlight-yellow">1</mark><mark class="highlight-purple"> </mark><mark class="highlight-red">textFile.txt</mark></summary></details></li></ul></details></li></ul><ul id="6b83b29c-92b0-4f3c-b9d4-35ab8fa5e6ea" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cut</mark></mark></mark></summary><ul id="6b8a3d2b-6f72-4c56-8f91-1e4d8505a30f" class="toggle"><li><details open=""><summary>(def)</summary><ul id="ccc76315-7300-4e83-9434-8784c4c5c791" class="bulleted-list"><li style="list-style-type:disc">Command for cutting out sections from each line of files, then displaying in the output.</li></ul><ul id="d842024b-149b-4d17-8c6e-9d155b4e30f4" class="bulleted-list"><li style="list-style-type:disc">Uses tab spaces as separaters as default. Can implement a delimeter of your choice using <mark class="highlight-purple">-d </mark>option.</li></ul><ul id="8cff0fac-4037-4194-94af-a09a3c9fddf1" class="bulleted-list"><li style="list-style-type:disc">Requires one of one of the following options to be used to specify what unit to use to select which part of the file to cut:<ul id="fce07d18-ba7e-4a52-88bf-d9de39d1d721" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow">-b</mark>, <mark class="highlight-yellow">-c</mark>, <mark class="highlight-yellow">-f</mark><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-purple"><mark class="highlight-yellow"> </mark></mark></mark></mark>(bytes/chatacter/fields)</li></ul><ul id="c1203742-a923-429c-983b-b5b90673d661" class="bulleted-list"><li style="list-style-type:circle">*<span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">Field</span></span></span></span></span> : Refers to columns.</li></ul></li></ul></details></li></ul><ul id="73432d4d-b2b1-41d8-bf27-fd5da72afe91" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">cut </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-purple">-d , </mark><mark class="highlight-yellow">-f 2</mark><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"> </mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-red">someCSV.csv</mark></summary><ul id="79b10be3-3b44-4f3d-b93e-e23a7adf4ac0" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-purple">-d </mark>(parameter: <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">delim</span></span></span></span></span> )<ul id="f23988e3-039a-414b-ac4a-f4d065fbe8d2" class="bulleted-list"><li style="list-style-type:circle">(man) Use <span style="border-bottom:0.05em solid">delim</span> as the <span style="border-bottom:0.05em solid">field</span> delimeter character instaed of the <span style="border-bottom:0.05em solid">tab character</span>.<ul id="f9c75a46-6fcd-4fde-9062-ca088778a1cc" class="bulleted-list"><li style="list-style-type:square">*<span style="border-bottom:0.05em solid">tab character</span> : Tab space.</li></ul></li></ul><ul id="d419ec67-c785-4dee-913a-0fb13f12daba" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-purple"> , </mark>is the argument in this case. Will be used as the delimeter.</li></ul></li></ul><ul id="165b834d-d869-49f6-be2d-6fd8144de8b7" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow">-f </mark>(parameter: <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">list</span></span></span></span>)<ul id="cfb1f013-3c53-4840-b6a9-b69351c97645" class="bulleted-list"><li style="list-style-type:circle">(man) The list specifies <span style="border-bottom:0.05em solid">fields</span>, separated in the input by the field delimeter character specified with the<mark class="highlight-purple"> -d</mark> option. Output fields are separated by a single occurence of the field delimeter character. </li></ul><ul id="9a987cb3-db72-47c1-b5bf-5bb34a8f14df" class="bulleted-list"><li style="list-style-type:circle">So you enter a number to indicate what <span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid"><span style="border-bottom:0.05em solid">field</span></span></span></span></span>/column of the <mark class="highlight-red">someCSV.csv </mark>file you want to cut, which in this case is <mark class="highlight-yellow">2</mark>.</li></ul></li></ul><ul id="536ee450-2103-487f-b50c-3e721c348d35" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red">someCSV.csv</mark><ul id="2efada9f-2686-490b-9eb8-f992f2a5be49" class="bulleted-list"><li style="list-style-type:circle">The file you want to perform the cutting on.</li></ul></li></ul></details></li></ul></details></li></ul><ul id="8deb0670-df74-4923-adb1-86d299672279" class="toggle"><li><details open=""><summary><mark class="highlight-blue">uniq</mark></summary><ul id="05e9bb98-234f-4bac-92b5-b6e4e1f9f376" class="toggle"><li><details open=""><summary>(def)</summary><ul id="118c1dc3-1222-4b0b-ab18-038d542cace9" class="bulleted-list"><li style="list-style-type:disc">(man) Reports/Filters out repeated lines in a file.</li></ul><ul id="d093628a-e8c2-477a-b9af-8e8490026c35" class="bulleted-list"><li style="list-style-type:disc">‘Unique’</li></ul></details></li></ul><ul id="fb3e8ff1-5c5c-4ad4-a495-5168993f53f8" class="toggle"><li><details open=""><summary><mark class="highlight-blue">uniq</mark> <mark class="highlight-red">file.txt</mark></summary><ul id="6569c8da-c4b5-41e4-8fe7-c7dfea02a59a" class="bulleted-list"><li style="list-style-type:disc">Outputs unique lines from the <mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red"><mark class="highlight-red">file.txt</mark></mark></mark></mark></mark></mark></mark></mark> file.</li></ul></details></li></ul><ul id="d04e792c-3d97-4a3d-a172-7ad258a9228a" class="toggle"><li><details open=""><summary><mark class="highlight-red">cut -d, -f 2 someCSV.csv | sort | </mark><mark class="highlight-blue">uniq</mark><mark class="highlight-red"> </mark><mark class="highlight-yellow">-c</mark></summary><ul id="2a0d8462-b0c3-4063-aad9-5f1d415ec642" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow">-c</mark> : Gives a count of the number of times a line occurs in its output <span style="border-bottom:0.05em solid">consecutively</span>.</li></ul><ul id="baea9599-db69-4595-bc77-a1b9e1fa635c" class="bulleted-list"><li style="list-style-type:disc">For more: <a href="https://swcarpentry.github.io/shell-novice/04-pipefilter.html">Link</a></li></ul></details></li></ul></details></li></ul><ul id="bb489444-4ab5-40fb-a7bc-22f63f21404d" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">bash</mark></mark></mark></mark></summary><ul id="a8fa102e-b0fe-4285-9f10-762b34cf7bd0" class="toggle"><li><details open=""><summary>(def)</summary><ul id="f482a941-22d9-4d91-9539-ed62e0b0115a" class="bulleted-list"><li style="list-style-type:disc">Seems to be a command used to execute <mark class="highlight-blue">.sh</mark> files with. </li></ul><ul id="01906d49-a166-4cb8-9aba-4d936d76f2b9" class="bulleted-list"><li style="list-style-type:disc">First argument: The name of the file containing shell commands.</li></ul><ul id="3321d3b7-ad68-4977-a214-6464b0392654" class="bulleted-list"><li style="list-style-type:disc">Further additional arguments: Arguments to the script itself.</li></ul></details></li></ul><ul id="57f81ffc-c9a4-47e9-a5b2-4844cf799772" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">bash </mark></mark></mark></mark></mark></mark></mark></mark><mark class="highlight-purple">shellScriptFile.sh</mark></summary></details></li></ul><ul id="13b2c437-49a9-4aa4-b7a8-a586effc3797" class="toggle"><li><details open=""><summary><mark class="highlight-blue">bash </mark><mark class="highlight-purple">shellScript.sh</mark><mark class="highlight-blue"> </mark><mark class="highlight-yellow">data_file</mark><mark class="highlight-blue"> </mark><mark class="highlight-teal">stats-data_file</mark></summary><ul id="d7600b4e-6135-4d9d-aa9b-a596c23279aa" class="bulleted-list"><li style="list-style-type:disc">(Could be wrong:) Executes the<mark class="highlight-blue"> </mark><mark class="highlight-purple">shellScript.sh </mark>shell script with <br/><br/><mark class="highlight-yellow">data_file </mark>&amp; <mark class="highlight-blue"> </mark><mark class="highlight-teal">stats-data_file </mark>as arguments.</li></ul></details></li></ul></details></li></ul><ul id="f59b3572-654e-4a3b-b85a-62b00afdef34" class="toggle"><li><details open=""><summary><mark class="highlight-blue">history</mark></summary><ul id="e12f49f0-9521-4d94-91d5-29884126c2e7" class="toggle"><li><details open=""><summary>(def)</summary><ul id="047e791e-1a93-4400-ad19-4bf5c75332c6" class="bulleted-list"><li style="list-style-type:disc">Displays the command list (List of previoiusly executed commands).</li></ul><ul id="b588ff45-66c8-4ba3-851e-d1d807a298dd" class="bulleted-list"><li style="list-style-type:disc">Execute<mark class="highlight-blue"> !</mark><mark class="highlight-yellow">123</mark> to execute the previously executed command of your choice<br/>(’<br/><mark class="highlight-yellow">123</mark>’ being the command number.)</li></ul></details></li></ul><ul id="c76b5c3a-db8f-4f36-ac61-7923d7156561" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">history</mark></mark></mark></mark></mark></mark></mark></summary><ul id="9835e317-e992-4bea-a89b-baa7dda1c9f7" class="bulleted-list"><li style="list-style-type:disc">Displays the entire command list.</li></ul></details></li></ul><ul id="b2ca762a-56cb-4f6f-8376-6f63c902348e" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">history</mark></mark></mark></mark></mark></mark></mark><mark class="highlight-red"> | tail -n 5</mark></summary><ul id="01410152-a350-49a6-b97a-59d3675b715c" class="bulleted-list"><li style="list-style-type:disc">Outputs the lat five commands.</li></ul></details></li></ul></details></li></ul><ul id="f177750f-0268-48b0-a9e6-33b8ec76394d" class="toggle"><li><details open=""><summary><mark class="highlight-blue">find</mark></summary><ul id="d0916a08-81e7-4ff0-bbe1-8cf6434a446f" class="toggle"><li><details open=""><summary>(def)</summary><ul id="4dcaee78-0a8b-4cd4-906e-8459f94c7686" class="bulleted-list"><li style="list-style-type:disc">(geeks) Command that can be used to find files/directories and perform subsequent operations on them.</li></ul></details></li></ul><ul id="fa3b3a9d-a45c-49cd-9c57-fe6be35805b9" class="toggle"><li><details open=""><summary><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue">find </mark></mark></mark></mark></mark><mark class="highlight-purple">.</mark><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"><mark class="highlight-blue"> </mark></mark></mark></mark></mark><mark class="highlight-yellow">-type f</mark></summary><ul id="8c2d1a22-ef40-48ac-867f-6f0370f4cc35" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-purple">. </mark>: Where to start searching from.</li></ul><ul id="2c33e9d1-a281-4f1a-b03c-f48b35d9ce2d" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow">-type</mark></mark></mark></mark></mark> :<ul id="f10bedd8-6e10-47f5-8595-05f5a3d59c72" class="bulleted-list"><li style="list-style-type:circle">The specific type of files you are looking to find, I think. You add an argument to this option to specify what type of files you are looking for.</li></ul><ul id="45caa3da-87b3-431b-ab89-f10610e8da91" class="bulleted-list"><li style="list-style-type:circle">(man) True if the file is of the specified type. Possible file types are as follows:<ul id="2dafeded-d336-481d-979d-106c8e3bd7fb" class="bulleted-list"><li style="list-style-type:square"><mark class="highlight-yellow">b </mark>/ <mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow"><mark class="highlight-yellow">c </mark></mark></mark></mark>/ <mark class="highlight-yellow"><mark class="highlight-yellow">d </mark></mark>/ <mark class="highlight-yellow"><mark class="highlight-yellow">f </mark></mark>/ <mark class="highlight-yellow">l</mark> / <mark class="highlight-yellow">p</mark> / <mark class="highlight-yellow">s</mark></li></ul></li></ul></li></ul><ul id="a8872e16-e156-424d-a45c-c4bfe6ec6652" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow">f </mark>: Regular files</li></ul><ul id="0f8e19e0-6a06-40bc-90eb-11ebed7b2a53" class="bulleted-list"><li style="list-style-type:disc">Output: The pathway to the directories/subdirectories leading to what you are looking for, in this case, regular files. Something like this:<br/><br/><code>./.DS_Store<br/>./80/0c9d6fe2ed64dd4a9ba3a2541fbf4295e6c2a1<br/>./e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391<br/></code></li></ul></details></li></ul></details></li></ul></li></ul><p id="46449d48-d558-4395-90d9-9abdc7754f57" class="">
+</p><ul id="b04bd115-3720-4285-93ba-09add7ad67cb" class="bulleted-list"><li style="list-style-type:disc">For-loops<ul id="f2ff6291-16b2-452d-9d77-2b1361cf5723" class="toggle"><li><details open=""><summary>(def)</summary><ul id="b6fbc4fc-a4a8-46b0-8626-275e26769059" class="bulleted-list"><li style="list-style-type:disc">The<mark class="highlight-blue"> </mark><mark class="highlight-red">$ </mark>symbol within the for-loop denotes that the word attached to it is a variable.</li></ul><ul id="51bad4a0-b3ce-4568-a61e-28ae74b1cbf3" class="bulleted-list"><li style="list-style-type:disc">The <mark class="highlight-red">&gt;</mark> symbol that appears after entering the first line of the for-in loop denotes that you haven’t finished typing a complete command yet.</li></ul><ul id="a8bca675-8b5e-4f22-a189-7a0f9c5e2caa" class="bulleted-list"><li style="list-style-type:disc">The <mark class="highlight-red"><mark class="highlight-red">; </mark></mark>(semicolon) can be used to separate two commands written on a single line.</li></ul><ul id="3e7e6417-11d6-41ad-91bd-73ad9ab7b6d3" class="bulleted-list"><li style="list-style-type:disc">Loop Variable:<ul id="88c25088-3f83-4446-a11b-58b7495a0480" class="bulleted-list"><li style="list-style-type:circle">The loop variable (’<mark class="highlight-orange">filename</mark>’ in the first code example under ‘Code:’) can be referred to by either <mark class="highlight-orange"><mark class="highlight-orange"><mark class="highlight-orange"><mark class="highlight-orange"><mark class="highlight-orange"><mark class="highlight-orange"><mark class="highlight-orange"><mark class="highlight-orange"><mark class="highlight-orange">$filename</mark></mark></mark></mark></mark></mark></mark></mark></mark> or <mark class="highlight-orange"><mark class="highlight-orange"><mark class="highlight-orange">${filename}</mark></mark></mark> (They are one and the same).</li></ul><ul id="cd7f6a70-c85e-44ff-94c0-dc747b9ecaf6" class="bulleted-list"><li style="list-style-type:circle">This is useful for not only clarity but to alter the loop variables <br/>(e.g. <br/><mark class="highlight-orange">${filename^}</mark>, <mark class="highlight-orange">${filename[0]}</mark>) (Capitalization &amp; Subscripting, respectively)<br/><br/></li></ul></li></ul></details></li></ul><ul id="2eaf0bae-58fd-4dcf-8efa-b45f74044847" class="toggle"><li><details open=""><summary>Code:</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="daf8b5b8-b99d-4b81-9097-4c238cbdcdd4" class="code"><code class="language-Shell">/* A simple for-in loop through multiple files */
+
+$ for filename in file1.dat file2.dat file3.dat
+&gt; do
+&gt;	  echo $filename
+&gt;   head -n 2 $filename | tail -n 1
+&gt; done
+
+
+------------------------------------------------------------------------
+/* To make copies of multiple files using for-in loop */
+
+$ for filename in *.dat
+&gt; do
+&gt;   cp $filename original-$filename
+&gt; done
+
+------------------------------------------------------------------------
+/* To see what each iteration in the for-in loop above would output: */
+
+$ for filename in *.dat
+&gt; do
+&gt;   echo cp $filename original-$filename
+&gt; done
+
+------------------------------------------------------------------------
+/* 
+To execute a shell script on multiple .txt files in a directory
+using for-in loop:
+*/
+
+$ for data_file in *.dat
+&gt; do
+&gt; echo $data_file
+&gt; bash shellScript.sh $data_file stats-$data_file
+&gt; done
+
+------------------------------------------------------------------------
+/* Nested For-in loop */
+
+$ for species in cubane.pdb ethane.pdb methane.pdb
+&gt; do
+&gt;     for temperature in 25 30 37 40
+&gt;     do
+&gt;         mkdir $species-$temperature
+&gt;     done
+&gt; done</code></pre></details></li></ul><p id="d3e6420a-0d9f-44e6-a1bc-b9b09b0e2b8b" class="">
+</p><p id="ee4782b5-dc9b-4ec7-b140-e2d7cd821dc6" class="">
+</p><p id="282c972d-f75b-40ed-96c8-a3c5e7c9ef49" class="">
+</p><p id="c3351ec4-d618-48d2-91e4-6b5e8648924c" class="">
+</p></li></ul><p id="b5433d11-e6d0-4e19-825d-90a82b60c623" class="">Have not covered (in here: <a href="https://swcarpentry.github.io/shell-novice/index.html">link</a>):<div class="indented"><ul id="c059a696-8c25-45d4-b193-ac3f9fb42487" class="bulleted-list"><li style="list-style-type:disc">“6. Shell Scripts”</li></ul><ul id="438c5e56-1fc8-41c4-82a2-d8c936ee908f" class="bulleted-list"><li style="list-style-type:disc">“7. Finding Things”</li></ul></div></p><p id="a3fda8c5-7786-4fb1-a15e-b4883622451b" class="">
+</p><p id="7f3371e7-4519-4f64-aeee-fc37809a7d68" class="">
+</p><p id="0e114186-b143-46a7-860f-0a5f90f20f36" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
