@@ -1,3 +1,5 @@
 # Personal-Website
 
-gumroad.com
+Inspired by gumroad.com
+
+Work in progress.
