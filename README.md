@@ -1,6 +1,6 @@
 # Personal-Website
 
-Inspired by gumroad.com
+gumroad.com inspired.
 
 Work in progress.
 
