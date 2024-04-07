@@ -118,3 +118,8 @@ nav ul li ul li a:hover {
   width: 100%;
   border-left: 2px solid black;
 }
+
+#verticalFour-div {
+  height: 600px;
+  border-top: 2px solid black;
+}
