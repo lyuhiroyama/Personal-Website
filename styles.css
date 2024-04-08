@@ -72,24 +72,17 @@ nav ul li ul li a:hover {
   background-color: #eb81e0;
 }
 
-#verticalOneHalf-div {
-  display: none;
-  height: 310px;
-  width: 100%;
-
-}
-
 #verticalOne-div {
   display: flex;
 }
 
-#horizontalOne-divOne {
+#verticalOne-div #horizontalOne-divOne {
   background-color: #eb81e0;
   height: 600px;
   width: 100%;
 }
 
-#horizontalOne-divTwo {
+#verticalOne-div #horizontalOne-divTwo {
   background-color: #e8c527;
   height: 600px;
   width: 100%;
@@ -106,13 +99,13 @@ nav ul li ul li a:hover {
   border-top: 2px solid black;
 }
 
-#horizontalThree-divOne {
+#verticalThree-div #horizontalThree-divOne {
   background-color: #AB00A1;
   height: 600px;
   width: 100%;
 }
 
-#horizontalThree-divTwo {
+#verticalThree-div #horizontalThree-divTwo {
   background-color: #eb81e0;
   height: 600px;
   width: 100%;
