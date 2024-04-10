@@ -34,6 +34,11 @@ nav li {
   padding: 1.75em 1em;
 }
 
+#navbar li a{
+  text-decoration: none;
+  color: black;
+}
+
 nav ul li ul {
   display: none;
   position: absolute;
