@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Lyu Hiroyama | About</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <p id="header-text">LYU HIROYAMA / 廣山　龍</p>
+    </header>
+
+    <nav>
+      <ul id="nav-logo">
+        <li>LYU HIROYAMA</li>
+      </ul>
+
+      <ul id="navbar">
+
+        <li><a href="index.html">Home</a></li>
+
+        <li><a href="about.html">About</a></li>
+
+        <li>
+          Projects
+          <ul>
+            <li>
+              <a
+                href="https://chromewebstore.google.com/detail/ufv-course-outline-finder/mndjamfkhbpmaejlgmmmimpanhhhfkfd?hl=en"
+                >UFV Course Outline Finder</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          Notes
+          <ul>
+            <li>
+              <a
+                href="https://cuddly-sunflower-42d.notion.site/JavaScript-1-04f64287c5134ef7818e5bb3a61a8f20?pvs=4"
+                >JavaScript</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://cuddly-sunflower-42d.notion.site/HTML-1-01674607e1034bc395f0eb6bcd406a14?pvs=4"
+                >HTML</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://cuddly-sunflower-42d.notion.site/CSS-1-7252ec782b5248d9ab5a621f71a5d37a?pvs=4"
+                >CSS</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://cuddly-sunflower-42d.notion.site/Command-Line-1-f8d7e12a190b44889c6efe3ab148b21f?pvs=4"
+                >Command Line</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://cuddly-sunflower-42d.notion.site/Git-1-b755163450f644f5a06edf7eb0ae9b8f?pvs=4"
+                >Git</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://cuddly-sunflower-42d.notion.site/Swift-1-cb87b5f4de12400599df987beacfef11?pvs=4"
+                >Swift</a
+              >
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <ul>
+        <li id="dashboard-hover">Dashboard</li>
+      </ul>
+    </nav>
+   
+    <div id="verticalOne-div">
+      <div id="horizontalOne-divOne"></div>
+      <div id="horizontalOne-divTwo"></div>
+    </div>
+
+    <div id="verticalTwo-div"></div>
+
+    <div id="verticalThree-div">
+      <div id="horizontalThree-divOne"></div>
+      <div id="horizontalThree-divTwo"></div>
+    </div>
+
+    <div id="verticalFour-div"></div>
+
+    <script>
+      window.onscroll = function () {
+        const nav = document.querySelector("nav");
+        const header = document.querySelector("header");
+        const navLogo = document.getElementById("nav-logo");
+        const scrollPlaceholder = document.getElementById(
+          "verticalOneHalf-div"
+        );
+
+        const headerHeight = header.offsetHeight;
+
+        if (window.pageYOffset > headerHeight) {
+          nav.classList.add("sticky");
+          header.style.display = "none";
+          navLogo.style.display = "inline";
+          scrollPlaceholder.style.display = "block";
+        } else {
+          nav.classList.remove("sticky");
+          header.style.display = "block";
+          navLogo.style.display = "none";
+          scrollPlaceholder.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>
